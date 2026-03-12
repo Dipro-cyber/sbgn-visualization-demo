@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn xmlns="http://sbgn.org/libsbgn/0.2">
+    <map language="process description">
+        <glyph id="glyph1" class="macromolecule">
+            <label text="STAT1α"/>
+            <bbox x="100" y="100" w="80" h="40"/>
+        </glyph>
+        <glyph id="glyph2" class="macromolecule">
+            <label text="IRF1"/>
+            <bbox x="300" y="100" w="80" h="40"/>
+        </glyph>
+        <glyph id="glyph3" class="process">
+            <bbox x="200" y="110" w="20" h="20"/>
+        </glyph>
+        <arc id="arc1" class="consumption" source="glyph1" target="glyph3">
+            <start x="180" y="120"/>
+            <end x="200" y="120"/>
+        </arc>
+        <arc id="arc2" class="production" source="glyph3" target="glyph2">
+            <start x="220" y="120"/>
+            <end x="300" y="120"/>
+        </arc>
+    </map>
+</sbgn>
