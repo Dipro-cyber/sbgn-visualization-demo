@@ -13,7 +13,12 @@
         }
         h1 {
             color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
             margin-bottom: 20px;
+            font-size: 14px;
         }
         #cy {
             width: 100%;
@@ -21,9 +26,28 @@
             border: 2px solid #ddd;
             background: white;
             border-radius: 8px;
+            position: relative;
         }
         .controls {
             margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .control-group {
+            display: flex;
+            gap: 5px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .control-group label {
+            font-weight: bold;
+            margin-right: 5px;
+            color: #555;
+            align-self: center;
         }
         button {
             padding: 10px 20px;
@@ -33,17 +57,67 @@
             color: white;
             border: none;
             border-radius: 4px;
+            transition: all 0.3s;
         }
         button:hover {
             background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        button.secondary {
+            background: #2196F3;
+        }
+        button.secondary:hover {
+            background: #0b7dda;
+        }
+        button.danger {
+            background: #f44336;
+        }
+        button.danger:hover {
+            background: #da190b;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border-left: 4px solid #2196F3;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <h1>SBGN Biological Pathway Visualization</h1>
-    <div class="controls">
-        <button onclick="loadSBGNML()">Load SBGNML File</button>
+    <div class="subtitle">Interactive demonstration of SBGN pathway rendering with Cytoscape.js</div>
+    
+    <div class="info">
+        Use the controls below to interact with the biological pathway graph. Try zooming, panning, and changing layouts!
     </div>
+
+    <div class="controls">
+        <button onclick="loadSBGNML()">🔄 Load SBGNML File</button>
+        
+        <div class="control-group">
+            <label>Zoom:</label>
+            <button class="secondary" onclick="zoomIn()">➕ Zoom In</button>
+            <button class="secondary" onclick="zoomOut()">➖ Zoom Out</button>
+            <button class="secondary" onclick="fitGraph()">📐 Fit Graph</button>
+        </div>
+        
+        <div class="control-group">
+            <label>Layout:</label>
+            <button class="secondary" onclick="applyLayout('preset')">📍 Preset</button>
+            <button class="secondary" onclick="applyLayout('circle')">⭕ Circle</button>
+            <button class="secondary" onclick="applyLayout('grid')">⊞ Grid</button>
+            <button class="secondary" onclick="applyLayout('breadthfirst')">🌳 Tree</button>
+        </div>
+        
+        <button class="danger" onclick="resetGraph()">🔄 Reset All</button>
+    </div>
+    
     <div id="cy"></div>
 
     <!-- Load dependencies from CDN -->
